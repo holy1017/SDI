@@ -147,6 +147,7 @@ CSDIDoc* CSDIView::GetDocument() const // 디버그되지 않은 버전은 인�
 
 int CSDIView::OnCreate(LPCREATESTRUCT lpCreateStruct)
 {
+	TRACE0("CSDIView::OnCreate\n");
 	if (CView::OnCreate(lpCreateStruct) == -1)
 		return -1;
 
@@ -183,6 +184,7 @@ int CSDIView::OnCreate(LPCREATESTRUCT lpCreateStruct)
 
 void CSDIView::OnDecreaseButton()
 {
+	TRACE0("CSDIView::OnDecreaseButton\n");
 	int count = m_ListBox.GetCount();
 
 	if (count > 0)
@@ -199,11 +201,15 @@ void CSDIView::OnDecreaseButton()
 
 void CSDIView::OnIncreaseButton()
 {
+	TRACE0("CSDIView::OnIncreaseButton\n");
 	int count = m_ListBox.GetCount();
 
 	if (count < 10)
 	{
-		m_ListBox.AddString(_T("윈도우 프로그래밍 !"));
+		CString s;
+			s.Format( _T("윈도우 프로그래밍 ! %d"), count);
+		m_ListBox.AddString(s);
+		//m_ListBox.AddString(_T("윈도우 프로그래밍 !"));
 		m_ProgressBar.SetPos(count + 1);
 	}
 	else
